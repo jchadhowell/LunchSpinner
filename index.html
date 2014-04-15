@@ -1,0 +1,30 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <script src="angular.js"></script>
+    <title>Lunch Spinner</title>
+</head>
+<body ng-init="name='friend'">
+      <div ng-hide="isHidden" >
+          Your Name:<input type="text" ng-model="name" />
+      </div>
+      <div>
+          <button ng-click="name='Fred'">My name is Fred</button>
+      </div>
+
+      Hide:<input type="checkbox" ng-model="isHidden">
+      <br />
+      <br />
+      <div >Hello {{name}}. Welcome to  Lunch Spinner. <br /></div>
+      <span ng-bind="name"></span>
+
+
+      A Lunch Decision Support System.
+
+
+</body>
+
+
+
+
+</html>
