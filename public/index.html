@@ -1,28 +1,40 @@
 <!doctype html>
-<html ng-app>
-<head>
-    <script src="angular.js"></script>
-    <title>Lunch Spinner</title>
-</head>
-<body ng-init="name='friend'">
-      <div ng-hide="isHidden" >
-          Your Name:<input type="text" ng-model="name" />
-      </div>
-      <div>
-          <button ng-click="name='Fred'">My name is Fred</button>
-      </div>
-
-      Hide:<input type="checkbox" ng-model="isHidden">
-      <br />
-      <br />
-      <div >Hello {{name}}. Welcome to  Lunch Spinner. <br /></div>
-      <span ng-bind="name"></span>
+<html ng-app xmlns="http://www.w3.org/1999/html">
+    <head>
+        <script src="angular.js"></script>
+        <title>Lunch Spinner</title>
+        <link href="styles.css" rel="stylesheet" type="text/css" />
 
 
-      A Lunch Decision Support System.
+    </head>
+    <body ng-init="data={name:'James', status:'red', destination:'?',
+    restaurants:['?','Whole Foods', 'Newks', 'Chuys', 'Masala Wok', 'Fire Bowl', 'Panera', 'Noodles' ]}">
 
 
-</body>
+    <div ng-class="data.status" >Welcome to  Lunch Spinner. <br /></div>
+
+    A Lunch Decision Support System.    </br></br>
+
+
+
+    <button ng-click="count = count+1" ng-init="count=0">
+        Give it a spin!
+    </button>
+
+
+    <div>Your Lunch Destination: {{data.restaurants[count]}}</input></div>
+
+
+
+
+
+
+
+
+
+
+
+    </body>
 
 
 
