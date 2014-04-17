@@ -5,10 +5,31 @@
     <title>Lunch Spinner</title>
     <link href="styles.css" rel="stylesheet" type="text/css"/>
 
+    <script>
+        function SimpleController($scope){
+            $scope.restaurants =  [
+                {name:'Whole Foods',type:'eclectic'},
+                {name:'Newks', type:'Sandwich'},
+                {name:'Chuys',type:'Tex-mex'},
+                {name:'Masala Wok', type:'Indian'},
+                {name:'Fire Bowl', type:'Asian'},
+                {name:'Panera',type:'sandwich'},
+                {name:'Noodles',type:'pasta'}
+            ];
+            $scope.doSort = function(propName){
+                $scope.sortBy = propName;
+                $scope.reverse = !$scope.reverse;
+            }
+
+            $scope.sortBy = 'name';
+            $scope.reverse = false;
+        }
+
+    </script>
+
 
 </head>
-<body ng-init="data={name:'James', status:'red', destination:'?',
-    restaurants:[{name:'Whole Foods',type:'eclectic'}, {name:'Newks', type:'Sandwich'},{name:'Chuys',type:'Tex-mex'}, {name:'Masala Wok', type:'Indian'}, {name:'Fire Bowl', type:'Asian'}, {name:'Panera',type:'sandwich'}, {name:'Noodles',type:'pasta'}]}">
+<body ng-init="data={status:'red', destination:'?'} " ng-controller="SimpleController" >
 
 
 <div ng-class="data.status">Welcome to Lunch Spinner. <br/></div>
@@ -18,16 +39,18 @@ A Lunch Decision Support System.    </br></br>
 <h3>Restaurants:</h3>
 
 
+
+
 Filter By Type:<input type="text" ng-model="filterBy.type">
 </br>
 </br>
 <table>
     <tr>
-        <th ng-click="sortBy='name';reverse=!reverse" >Name</td>
-        <th ng-click="sortBy='type';reverse=!reverse" >Type</td>
+        <th ng-click="doSort('name')" >Name</td>
+        <th ng-click="doSort('type')" >Type</td>
 
     </tr>
-    <tr ng-repeat="restaurant in data.restaurants | filter:filterBy |  orderBy:sortBy:reverse ">
+    <tr ng-repeat="restaurant in restaurants | filter:filterBy |  orderBy:sortBy:reverse ">
         <td>{{restaurant.name | uppercase}}</td>
         <td>{{restaurant.type | lowercase}}</td>
     </tr>
@@ -40,7 +63,7 @@ Filter By Type:<input type="text" ng-model="filterBy.type">
 </button>
 </br>
 
-<div>Your Lunch Destination: {{data.restaurants[count].name}}</input></div>
+<div>Your Lunch Destination: {{restaurants[count].name}}</input></div>
 
 
 </body>
