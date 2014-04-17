@@ -1,42 +1,49 @@
 <!doctype html>
-<html ng-app xmlns="http://www.w3.org/1999/html">
-    <head>
-        <script src="angular.js"></script>
-        <title>Lunch Spinner</title>
-        <link href="styles.css" rel="stylesheet" type="text/css" />
+<html ng-app xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <script src="angular.js"></script>
+    <title>Lunch Spinner</title>
+    <link href="styles.css" rel="stylesheet" type="text/css"/>
 
 
-    </head>
-    <body ng-init="data={name:'James', status:'red', destination:'?',
-    restaurants:['?','Whole Foods', 'Newks', 'Chuys', 'Masala Wok', 'Fire Bowl', 'Panera', 'Noodles' ]}">
+</head>
+<body ng-init="data={name:'James', status:'red', destination:'?',
+    restaurants:[{name:'Whole Foods',type:'eclectic'}, {name:'Newks', type:'Sandwich'},{name:'Chuys',type:'Tex-mex'}, {name:'Masala Wok', type:'Indian'}, {name:'Fire Bowl', type:'Asian'}, {name:'Panera',type:'sandwich'}, {name:'Noodles',type:'pasta'}]}">
 
 
-    <div ng-class="data.status" >Welcome to  Lunch Spinner. <br /></div>
+<div ng-class="data.status">Welcome to Lunch Spinner. <br/></div>
 
-    A Lunch Decision Support System.    </br></br>
+A Lunch Decision Support System.    </br></br>
 
-
-
-    <button ng-click="count = count+1" ng-init="count=0">
-        Give it a spin!
-    </button>
+<h3>Restaurants:</h3>
 
 
-    <div>Your Lunch Destination: {{data.restaurants[count]}}</input></div>
+Filter By Type:<input type="text" ng-model="filterBy.type">
+</br>
+</br>
+<table>
+    <tr>
+        <th ng-click="sortBy='name';reverse=!reverse" >Name</td>
+        <th ng-click="sortBy='type';reverse=!reverse" >Type</td>
+
+    </tr>
+    <tr ng-repeat="restaurant in data.restaurants | filter:filterBy |  orderBy:sortBy:reverse ">
+        <td>{{restaurant.name | uppercase}}</td>
+        <td>{{restaurant.type | lowercase}}</td>
+    </tr>
+
+</table>
+</br>
+
+<button ng-click="count = count+1" ng-init="count=0">
+    Give it a spin!
+</button>
+</br>
+
+<div>Your Lunch Destination: {{data.restaurants[count].name}}</input></div>
 
 
-
-
-
-
-
-
-
-
-
-    </body>
-
-
+</body>
 
 
 </html>
