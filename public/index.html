@@ -1,35 +1,17 @@
 <!doctype html>
-<html ng-app xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<html ng-app="restaurantApp" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <script src="angular.js"></script>
-    <title>Lunch Spinner</title>
+
     <link href="styles.css" rel="stylesheet" type="text/css"/>
+    <script src="app.js"></script>
+    <script src="RestaurantsController.js"></script>
 
-    <script>
-        function SimpleController($scope){
-            $scope.restaurants =  [
-                {name:'Whole Foods',type:'eclectic'},
-                {name:'Newks', type:'Sandwich'},
-                {name:'Chuys',type:'Tex-mex'},
-                {name:'Masala Wok', type:'Indian'},
-                {name:'Fire Bowl', type:'Asian'},
-                {name:'Panera',type:'sandwich'},
-                {name:'Noodles',type:'pasta'}
-            ];
-            $scope.doSort = function(propName){
-                $scope.sortBy = propName;
-                $scope.reverse = !$scope.reverse;
-            }
-
-            $scope.sortBy = 'name';
-            $scope.reverse = false;
-        }
-
-    </script>
+    <title>Lunch Spinner</title>
 
 
 </head>
-<body ng-init="data={status:'red', destination:'?'} " ng-controller="SimpleController" >
+<body ng-controller="RestaurantsController" >
 
 
 <div ng-class="data.status">Welcome to Lunch Spinner. <br/></div>
