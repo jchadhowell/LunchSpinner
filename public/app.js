@@ -1,1 +1,5 @@
-var restaurantApp = angular.module('restaurantApp', []);
+(function(){
+    angular.module('restaurantApp', []);
+}());
+
+//var restaurantApp =

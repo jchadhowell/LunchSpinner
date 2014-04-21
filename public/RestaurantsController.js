@@ -1,4 +1,4 @@
-restaurantApp.controller('RestaurantsController', function ($scope){
+angular.module('restaurantApp').controller('RestaurantsController', function ($scope){
     $scope.restaurants =  [
         {name:'Whole Foods',type:'eclectic'},
         {name:'Newks', type:'Sandwich'},
