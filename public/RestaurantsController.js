@@ -1,7 +1,7 @@
 (function(){
     var RestaurantsController = function ($scope){
-        $scope.restaurants =  [
-            {name:'Whole Foods',type:'eclectic'},
+        restaurants =  [
+            {name:'Whole Foods',type:'Eclectic'},
             {name:'Newks', type:'Sandwich'},
             {name:'Chuys',type:'Tex-mex'},
             {name:'Masala Wok', type:'Indian'},
@@ -16,6 +16,12 @@
 
         $scope.sortBy = 'name';
         $scope.reverse = false;
+
+        $scope.restaurant = {name:'???',type:''};
+
+        $scope.setRandomRestaurant = function () {
+            $scope.restaurant = restaurants[Math.floor(Math.random() * restaurants.length)];
+        };
     };
 
     angular.module('restaurantApp').controller('RestaurantsController', RestaurantsController);

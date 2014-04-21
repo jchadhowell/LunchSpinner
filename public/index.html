@@ -14,41 +14,20 @@
 <body ng-controller="RestaurantsController" >
 
 
-<div ng-class="data.status">Welcome to Lunch Spinner. <br/></div>
-
-A Lunch Decision Support System.    </br></br>
-
-<h3>Restaurants:</h3>
+<div><h1>Welcome to Lunch Spinner.</h1></div>
 
 
+<h2>A Lunch Decision Support System.</h2>
 
-
-Filter By Type:<input type="text" ng-model="filterBy.type">
-</br>
-</br>
-<table>
-    <tr>
-        <th ng-click="doSort('name')" >Name</td>
-        <th ng-click="doSort('type')" >Type</td>
-
-    </tr>
-    <tr ng-repeat="restaurant in restaurants | filter:filterBy |  orderBy:sortBy:reverse ">
-        <td>{{restaurant.name | uppercase}}</td>
-        <td>{{restaurant.type | lowercase}}</td>
-    </tr>
-
-</table>
 </br>
 
-<button ng-click="count = count+1" ng-init="count=0">
+<button ng-click="setRandomRestaurant()">
     Give it a spin!
 </button>
 </br>
 
-<div>Your Lunch Destination: {{restaurants[count].name}}</input></div>
-
+<div><h3>Your Lunch Destination: {{restaurant.name}}</h3> </div>
 
 </body>
-
 
 </html>
