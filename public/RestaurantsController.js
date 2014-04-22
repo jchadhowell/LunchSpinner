@@ -24,6 +24,8 @@
         };
     };
 
+    RestaurantsController.$inject = ['$scope'];
+
     angular.module('restaurantApp').controller('RestaurantsController', RestaurantsController);
 })();
 

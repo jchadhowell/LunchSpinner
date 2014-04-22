@@ -2,6 +2,7 @@
 <html ng-app="restaurantApp" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <script src="angular.js"></script>
+    <script src="angular-route.js"></script>
 
     <link href="styles.css" rel="stylesheet" type="text/css"/>
     <script src="app.js"></script>
@@ -9,24 +10,10 @@
 
     <title>Lunch Spinner</title>
 
-
 </head>
-<body ng-controller="RestaurantsController" >
+<body >
 
-
-<div><h1>Welcome to Lunch Spinner.</h1></div>
-
-
-<h2>A Lunch Decision Support System.</h2>
-
-</br>
-
-<button ng-click="setRandomRestaurant()">
-    Give it a spin!
-</button>
-</br>
-
-<div><h3>Your Lunch Destination: {{restaurant.name}}</h3> </div>
+   <div ng-view></div>
 
 </body>
 
