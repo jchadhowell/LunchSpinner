@@ -1,30 +1,19 @@
 (function(){
-    var RestaurantsController = function ($scope){
-        restaurants =  [
-            {name:'Whole Foods',type:'Eclectic'},
-            {name:'Newks', type:'Sandwich'},
-            {name:'Chuys',type:'Tex-mex'},
-            {name:'Masala Wok', type:'Indian'},
-            {name:'Fire Bowl', type:'Asian'},
-            {name:'Panera',type:'sandwich'},
-            {name:'Noodles',type:'pasta'}
-        ];
-        $scope.doSort = function(propName){
-            $scope.sortBy = propName;
-            $scope.reverse = !$scope.reverse;
+    var RestaurantsController = function ($scope, restaurantsFactory){
+
+        function init() {
+            $scope.restaurant = {name:'???',type:''};
+        }
+
+        init();
+
+        $scope.setRandomRestaurant = function(){
+            $scope.restaurant =  restaurantsFactory.getRandomRestaurant();
         };
 
-        $scope.sortBy = 'name';
-        $scope.reverse = false;
-
-        $scope.restaurant = {name:'???',type:''};
-
-        $scope.setRandomRestaurant = function () {
-            $scope.restaurant = restaurants[Math.floor(Math.random() * restaurants.length)];
-        };
     };
 
-    RestaurantsController.$inject = ['$scope'];
+    RestaurantsController.$inject = ['$scope','restaurantsFactory'];
 
     angular.module('restaurantApp').controller('RestaurantsController', RestaurantsController);
 })();
