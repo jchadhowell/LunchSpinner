@@ -21,4 +21,9 @@
 
     angular.module('restaurantApp').factory('restaurantsFactory',restaurantsFactory);
 
+    angular.module('restaurantApp').value('appSettings',{
+        title:'LunchSpinner',
+        version:'1.0'
+    });
+
 }());

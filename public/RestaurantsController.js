@@ -1,8 +1,12 @@
 (function(){
-    var RestaurantsController = function ($scope, restaurantsFactory){
+    var RestaurantsController = function ($scope, restaurantsFactory, appSettings){
+
+
+
 
         function init() {
             $scope.restaurant = {name:'???',type:''};
+            $scope.appSettings = appSettings;
         }
 
         init();
@@ -13,7 +17,7 @@
 
     };
 
-    RestaurantsController.$inject = ['$scope','restaurantsFactory'];
+    RestaurantsController.$inject = ['$scope','restaurantsFactory', 'appSettings'];
 
     angular.module('restaurantApp').controller('RestaurantsController', RestaurantsController);
 })();
