@@ -1,29 +1,42 @@
-(function(){
-    var restaurantsFactory = function() {
-        var restaurants = [
-            {name: 'Whole Foods', type: 'Eclectic'},
-            {name: 'Newks', type: 'Sandwich'},
-            {name: 'Chuys', type: 'Tex-mex'},
-            {name: 'Masala Wok', type: 'Indian'},
-            {name: 'Fire Bowl', type: 'Asian'},
-            {name: 'Panera', type: 'sandwich'},
-            {name: 'Noodles', type: 'pasta'}
-        ];
+(function () {
+    var restaurantsFactory = function ($http) {
+
+        var restaurants;
+        var restaurantsPromise;
+
+        function init() {
+            restaurantsPromise = $http.get('/restaurants')
+                .success(function (data) {
+                restaurants = data;
+            })
+                .error(function(data, status, headers, config){
+                   //handle error
+                });
+        }
+
+        init();
 
         var factory = {};
 
         factory.getRandomRestaurant = function () {
-            return restaurants[Math.floor(Math.random() * restaurants.length)];
+            return restaurantsPromise.then(function (){
+                return restaurants[Math.floor(Math.random() * restaurants.length)];
+            })
+
+
+
         };
 
         return factory;
     };
 
-    angular.module('restaurantApp').factory('restaurantsFactory',restaurantsFactory);
+    restaurantsFactory.$inject = ['$http'];
 
-    angular.module('restaurantApp').value('appSettings',{
-        title:'LunchSpinner',
-        version:'1.0'
+    angular.module('restaurantApp').factory('restaurantsFactory', restaurantsFactory);
+
+    angular.module('restaurantApp').value('appSettings', {
+        title: 'LunchSpinner',
+        version: '1.0'
     });
 
 }());

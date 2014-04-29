@@ -12,7 +12,9 @@
         init();
 
         $scope.setRandomRestaurant = function(){
-            $scope.restaurant =  restaurantsFactory.getRandomRestaurant();
+            restaurantsFactory.getRandomRestaurant().then(function (restaurant){
+                $scope.restaurant = restaurant;
+            });
         };
 
     };
