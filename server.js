@@ -16,6 +16,7 @@ app.get('/restaurants', function(req, res){
         ];
 
         res.json(restaurants);
+        //res.json(500,{error: 'An error has occurred.'});
 
 });
 

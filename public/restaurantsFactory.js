@@ -10,7 +10,7 @@
                 restaurants = data;
             })
                 .error(function(data, status, headers, config){
-                   //handle error
+                    $log.log('data.error' + ' ' + status);
                 });
         }
 
