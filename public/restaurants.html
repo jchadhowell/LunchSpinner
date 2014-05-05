@@ -1,17 +1,36 @@
-<div><h1>Welcome to Lunch Spinner.</h1></div>
+<div class="header">
+    <ul class="nav nav-pills pull-right">
+        <li class="active"><a ng-href="#">Home</a></li>
+        <li><a ng-href="#">About</a></li>
+        <li><a ng-href="#">Contact</a></li>
+    </ul>
+    <h3 class="text-muted">LunchSpinner</h3>
+</div>
 
 
-<h2>A Lunch Decision Support System.</h2>
+<div class="jumbotron">
+    <h1>What's For Lunch?</h1>
+    <p class="lead">
+        <img src="images/lunch.jpeg" alt="LUNCH!"  ><br>
 
-<br />
+    </p>
+    <p><a class="btn btn-lg btn-success"  ng-click="setRandomRestaurant()" >Give it a Spin!</a></p>
 
-<button ng-click="setRandomRestaurant()">
-    Give it a spin!
-</button>
-<br />
+</div>
 
-<div><h3>Your Lunch Destination: {{restaurant.name}}</h3> </div>
+<div class="row marketing">
 
-<br />
-<div>version {{appSettings.version}}  </div>
+    <div><h3>Your Lunch Destination: {{restaurant.name}}</h3> </div>
+
+</div>
+
+<div class="footer">
+    <br />
+    <div>version {{appSettings.version}}  </div>
+    <p><span class="glyphicon glyphicon-heart"></span> scaffolded by Yeoman</p>
+</div>
+
+
+
+
 
