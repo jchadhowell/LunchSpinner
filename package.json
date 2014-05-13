@@ -1,10 +1,11 @@
 {
-    "name": "LunchSpinner",
-    "description": "Lunch Decision Support System",
-    "version": "0.0.1",
-    "private": true,
-    "dependencies": {
-        "express": "3.4.7",
-        "forever": "0.11.0"
-    }
+  "name": "LunchSpinner",
+  "description": "Lunch Decision Support System",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.4.7",
+    "forever": "0.11.0",
+    "yelp": "0.1.1"
+  }
 }
