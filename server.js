@@ -5,7 +5,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/restaurants', function(req, res){
 
-        var restaurants = [
+        /*var restaurants = [
             {name: 'Whole Foods', type: 'Eclectic'},
             {name: 'Newks', type: 'Sandwich'},
             {name: 'Chuys', type: 'Tex-mex'},
@@ -13,17 +13,32 @@ app.get('/restaurants', function(req, res){
             {name: 'Fire Bowl', type: 'Asian'},
             {name: 'Panera', type: 'sandwich'},
             {name: 'Noodles', type: 'pasta'}
-        ];
+        ];*/
 
+    var yelp = require("yelp").createClient({
+        consumer_key: "f6TEXZpl19BGpCmvj4sFsA",
+        consumer_secret: "Tc5rr4kO49xrWjif6CGC-zDt5Q8",
+        token: "nW7K79xxVHQKKRVJGB30UyGAbTlwjZD_",
+        token_secret: "c4QpX-2fI4vv9DkkowQvg1UojJg"
+    });
+
+// See http://www.yelp.com/developers/documentation/v2/search_api
+    yelp.search({term: "food", location: "Montreal"}, function(error, data) {
+        console.log(error);
+        console.log(data);   // res.json(500,{error: 'An error has occurred.'});
+        //var restaurants = [{name:data.businesses[0].name, type: 'sandwich'}];
+
+        function TransformYelpResults(yelpBusiness) {
+
+            return {name:yelpBusiness.name, type: 'sandwich'};
+        }
+
+        var restaurants = data.businesses.map(TransformYelpResults);
+
+        //var restaurants = [{name:'subway', type: 'sandwich'}];
         res.json(restaurants);
-        //res.json(500,{error: 'An error has occurred.'});
-
+    });
 });
-
-
-
-
-
 
 
 

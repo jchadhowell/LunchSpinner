@@ -23,8 +23,6 @@
                 return restaurants[Math.floor(Math.random() * restaurants.length)];
             })
 
-
-
         };
 
         return factory;
