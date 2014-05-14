@@ -30,7 +30,7 @@ app.get('/restaurants', function(req, res){
 
         function TransformYelpResults(yelpBusiness) {
 
-            return {name:yelpBusiness.name, type: 'sandwich'};
+            return {name:yelpBusiness.name, image_url:yelpBusiness.image_url};
         }
 
         var restaurants = data.businesses.map(TransformYelpResults);
