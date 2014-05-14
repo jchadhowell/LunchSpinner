@@ -23,7 +23,7 @@ app.get('/restaurants', function(req, res){
     });
 
 // See http://www.yelp.com/developers/documentation/v2/search_api
-    yelp.search({term: "food", location: "Montreal"}, function(error, data) {
+    yelp.search({term: "food", location: "78759", limit:"20"}, function(error, data) {
         console.log(error);
         console.log(data);   // res.json(500,{error: 'An error has occurred.'});
         //var restaurants = [{name:data.businesses[0].name, type: 'sandwich'}];
