@@ -1,29 +1,21 @@
-<div class="header">
-    <ul class="nav nav-pills pull-right">
-        <li class="active"><a ng-href="#">Home</a></li>
-        <li><a ng-href="#">About</a></li>
-        <li><a ng-href="#">Contact</a></li>
-    </ul>
-    <h3 class="text-muted">LunchSpinner</h3>
-</div>
-
-
 <div class="jumbotron">
     <h1>What's For Lunch?</h1>
     <p class="lead">
 
         <img src={{restaurant.image_url}} ><br>
 
+    <div class="row marketing">
+
+        <div><h3>{{restaurant.name}}</h3> </div>
+
+    </div>
+
     </p>
     <p><a class="btn btn-lg btn-success"  ng-click="setRandomRestaurant()" >Give it a Spin!</a></p>
 
 </div>
 
-<div class="row marketing">
 
-    <div><h3>Your Lunch Destination: {{restaurant.name}}</h3> </div>
-
-</div>
 
 <div class="footer">
     <br />
