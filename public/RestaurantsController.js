@@ -3,7 +3,7 @@
 
         function init() {
 
-            $scope.restaurant = {name:'?',image_url:'images/lunch.jpeg'};
+            $scope.restaurant = {name:'',image_url:'images/lunch.jpeg'};
             $scope.appSettings = appSettings;
         }
 
