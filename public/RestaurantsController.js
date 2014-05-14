@@ -1,11 +1,9 @@
 (function(){
     var RestaurantsController = function ($scope, restaurantsFactory, appSettings){
 
-
-
-
         function init() {
-            $scope.restaurant = {name:'???',type:''};
+
+            $scope.restaurant = {name:'?',image_url:'images/lunch.jpeg'};
             $scope.appSettings = appSettings;
         }
 
@@ -16,7 +14,6 @@
                 $scope.restaurant = restaurant;
             });
         };
-
     };
 
     RestaurantsController.$inject = ['$scope','restaurantsFactory', 'appSettings'];
