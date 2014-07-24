@@ -1,21 +1,15 @@
 <div class="jumbotron">
     <h1>What's For Lunch?</h1>
     <p class="lead">
-
-        <img src={{restaurant.image_url}} ><br>
-
-    <div class="row marketing">
-
-        <div><h3>{{restaurant.name}}</h3> </div>
-
-    </div>
-
+        <a data-ng-href="{{ restaurant.mobile_url }}" target="_blank"><img data-ng-src={{restaurant.image_url}} class="restaurant"></a>
+        <br>
+        <div class="row marketing">
+            <h3>{{restaurant.name}} &nbsp;</h3>
+        </div>
     </p>
-    <p><a class="btn btn-lg btn-success"  ng-click="setRandomRestaurant()" >Give it a Spin!</a></p>
-
+    <p><a class="btn btn-lg btn-success"  data-ng-click="setRandomRestaurant()" >Give it a Spin!</a></p>
 </div>
 <div class="footer">
-
     <div>LunchSpinner version {{appSettings.version}}  </div>
     <p><span class="glyphicon glyphicon-heart"></span> scaffolded by Yeoman</p>
 </div>
