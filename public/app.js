@@ -1,15 +1,16 @@
-(function(){
-    var app = angular.module('restaurantApp', ['ngRoute']);
+(function () {
+    'use strict';
 
-    app.config(function ($routeProvider)  {
-             $routeProvider
-                 .when('/',
-                 {
-                     controller: 'RestaurantsController',
-                     templateUrl: 'restaurants.html'
-                 })
-                 .otherwise({ redirectsTo: '/'});
-    });
+    angular.module('restaurantApp', ['ngRoute'])
+        .config(function ($routeProvider) {
+            $routeProvider
+                .when('/',
+                {
+                    controller: 'RestaurantsController',
+                    templateUrl: 'restaurants.html'
+                })
+                .otherwise({ redirectsTo: '/'});
+        });
 
 }());
 
