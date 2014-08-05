@@ -1,40 +1,61 @@
 (function () {
-    var restaurantsFactory = function ($http) {
+    'use strict';
 
-        var restaurants;
-        var restaurantsPromise;
+    var restaurantsServiceFactory = function ($http, $log) {
 
-        function init() {
-            restaurantsPromise = $http.get('/restaurants')
-                .success(function (data) {
-                restaurants = data;
+        function getRestaurants(location) {
+            return $http({
+                method: 'GET',
+                url: '/restaurants',
+                params: location,
+                cache: true
             })
-                .error(function(data, status, headers, config){
-                    $log.log('data.error' + ' ' + status);
+                .then(function (resp) {
+                    return resp.data;
+                }, function (resp) {
+                    $log.log('data.error', resp);
                 });
+
         }
 
-        init();
-
-        var factory = {};
-
-        factory.getRandomRestaurant = function () {
-            return restaurantsPromise.then(function (){
-                return restaurants[Math.floor(Math.random() * restaurants.length)];
-            })
-
+        return {
+            getRandomRestaurant: function (location) {
+                return getRestaurants(location).then(function (restaurants) {
+                    return restaurants[Math.floor(Math.random() * restaurants.length)];
+                });
+            }
         };
 
-        return factory;
     };
 
-    restaurantsFactory.$inject = ['$http'];
+    restaurantsServiceFactory.$inject = ['$http', '$log'];
 
-    angular.module('restaurantApp').factory('restaurantsFactory', restaurantsFactory);
+    var geoLocationServiceFactory = function ($q) {
+        return {
+            getLocation: function () {
+                var deferred = $q.defer();
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        deferred.resolve({
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        });
+                    }, function () {
+                        deferred.reject();
+                    });
+                }
+                return deferred.promise;
+            }
+        };
+    };
+    geoLocationServiceFactory.$inject = ['$q'];
 
-    angular.module('restaurantApp').value('appSettings', {
-        title: 'LunchSpinner',
-        version: '1.0'
-    });
+    angular.module('restaurantApp')
+        .factory('restaurantsService', restaurantsServiceFactory)
+        .factory('geoLocationService', geoLocationServiceFactory)
+        .value('appSettings', {
+            title: 'LunchSpinner',
+            version: '1.0'
+        });
 
 }());

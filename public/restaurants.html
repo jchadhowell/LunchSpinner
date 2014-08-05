@@ -7,7 +7,10 @@
             <h3>{{restaurant.name}} &nbsp;</h3>
         </div>
     </p>
-    <p><a class="btn btn-lg btn-success"  data-ng-click="setRandomRestaurant()" >Give it a Spin!</a></p>
+    <p><a class="btn btn-lg btn-success"
+          data-ng-click="setRandomRestaurant()"
+          data-ng-disabled="loading"><span data-ng-show="loading">Loading...</span><span data-ng-show="!loading">Give it a Spin!</span></a>
+    </p>
 </div>
 <div class="footer">
     <div>LunchSpinner version {{appSettings.version}}  </div>
