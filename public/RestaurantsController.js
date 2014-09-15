@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var RestaurantsController = function ($scope, restaurantsService, geoLocationService, appSettings) {
+    var RestaurantsController = function ($window, $scope, restaurantsService, geoLocationService, appSettings) {
         var locationPromise = geoLocationService.getLocation();
 
         function init() {
@@ -13,7 +13,10 @@
                 restaurantsService.getRandomRestaurant(location).then(function(){
                     $scope.loading = false;
                 });
-            }, function () {
+            }, function (error) {
+                if(error.code === error.TIMEOUT){
+                    $window.alert(error.message);
+                }
                 restaurantsService.getRandomRestaurant().then(function(){
                     $scope.loading = false;
                 });
@@ -36,7 +39,7 @@
         };
     };
 
-    RestaurantsController.$inject = ['$scope', 'restaurantsService', 'geoLocationService', 'appSettings'];
+    RestaurantsController.$inject = ['$window', '$scope', 'restaurantsService', 'geoLocationService', 'appSettings'];
 
     angular.module('restaurantApp').controller('RestaurantsController', RestaurantsController);
 })();
