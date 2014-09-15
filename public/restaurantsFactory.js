@@ -42,7 +42,7 @@
                         });
                     }, function (error) {
                         deferred.reject(error);
-                    }, { timeout: 5000 });
+                    }, { timeout: 10000 });
                 }
                 return deferred.promise;
             }

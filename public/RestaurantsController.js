@@ -2,23 +2,25 @@
     'use strict';
 
     var RestaurantsController = function ($window, $scope, restaurantsService, geoLocationService, appSettings) {
-        var locationPromise = geoLocationService.getLocation();
+        var location = null;
 
         function init() {
             $scope.restaurant = {name: '', image_url: 'images/lunch.jpeg'};
             $scope.appSettings = appSettings;
 
-            $scope.loading = true;
-            locationPromise.then(function (location) {
-                restaurantsService.getRandomRestaurant(location).then(function(){
-                    $scope.loading = false;
-                });
+            $scope.loadingLocation = true;
+            geoLocationService.getLocation().then(function (response) {
+                location = response;
+                $scope.loadingLocation = false;
             }, function (error) {
+                $scope.loadingLocation = false;
                 if(error.code === error.TIMEOUT){
                     $window.alert(error.message);
                 }
-                restaurantsService.getRandomRestaurant().then(function(){
-                    $scope.loading = false;
+            }).then(function () {
+                $scope.loadingRestaurants = true;
+                restaurantsService.getRandomRestaurant(location).then(function () {
+                    $scope.loadingRestaurants = false;
                 });
             });
         }
@@ -26,16 +28,9 @@
         init();
 
         $scope.setRandomRestaurant = function () {
-            locationPromise.then(function (location) {
-                restaurantsService.getRandomRestaurant(location).then(function (restaurant) {
-                    $scope.restaurant = restaurant;
-                });
-            }, function () {
-                restaurantsService.getRandomRestaurant().then(function (restaurant) {
-                    $scope.restaurant = restaurant;
-                });
+            restaurantsService.getRandomRestaurant(location).then(function (restaurant) {
+                $scope.restaurant = restaurant;
             });
-
         };
     };
 
