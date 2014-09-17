@@ -9,19 +9,13 @@
     </p>
     <p><a class="btn btn-lg btn-success"
           data-ng-click="setRandomRestaurant()"
-          data-ng-disabled="loading"><span data-ng-show="loading">Loading...</span><span data-ng-show="!loading">Give it a Spin!</span></a>
+          data-ng-disabled="loadingLocation || loadingRestaurants">
+        <span data-ng-show="loadingLocation">Locating you...</span>
+        <span data-ng-show="loadingRestaurants">Loading restaurants...</span>
+        <span data-ng-show="!(loadingLocation || loadingRestaurants)">Give it a Spin!</span></a>
     </p>
 </div>
 <div class="footer">
     <div>LunchSpinner version {{appSettings.version}}  </div>
     <p><span class="glyphicon glyphicon-heart"></span> scaffolded by Yeoman</p>
 </div>
-
-
-
-
-
-
-
-
-

@@ -40,9 +40,9 @@
                             latitude: position.coords.latitude,
                             longitude: position.coords.longitude
                         });
-                    }, function () {
-                        deferred.reject();
-                    });
+                    }, function (error) {
+                        deferred.reject(error);
+                    }, { timeout: 10000 });
                 }
                 return deferred.promise;
             }
