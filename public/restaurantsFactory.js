@@ -19,11 +19,7 @@
         }
 
         return {
-            getRandomRestaurant: function (location) {
-                return getRestaurants(location).then(function (restaurants) {
-                    return restaurants[Math.floor(Math.random() * restaurants.length)];
-                });
-            }
+            getRestaurants: getRestaurants
         };
 
     };

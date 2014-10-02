@@ -3,7 +3,9 @@
 
     var RestaurantsController = function ($window, $scope, restaurantsService, geoLocationService, appSettings) {
         var location = null;
-
+        var allRestaurants = null;
+        var restaurants = null;
+        
         function init() {
             $scope.restaurant = {name: '', image_url: 'images/lunch.jpeg'};
             $scope.appSettings = appSettings;
@@ -19,7 +21,9 @@
                 }
             }).then(function () {
                 $scope.loadingRestaurants = true;
-                restaurantsService.getRandomRestaurant(location).then(function () {
+                restaurantsService.getRestaurants(location).then(function (restaurantsFromService) {
+                    allRestaurants = restaurantsFromService;
+                    restaurants = allRestaurants.slice(0);
                     $scope.loadingRestaurants = false;
                 });
             });
@@ -28,9 +32,12 @@
         init();
 
         $scope.setRandomRestaurant = function () {
-            restaurantsService.getRandomRestaurant(location).then(function (restaurant) {
-                $scope.restaurant = restaurant;
-            });
+            if(!restaurants.length){
+                restaurants = allRestaurants.slice(0);
+            }
+            var index = Math.floor(Math.random() * restaurants.length);
+            $scope.restaurant = restaurants[index];
+            restaurants.splice(index, 1);
         };
     };
 
